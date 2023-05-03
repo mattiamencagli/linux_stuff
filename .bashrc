@@ -101,8 +101,10 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -lht'
-alias la='ls -lhat'
+alias ll='ls -lh'
+alias lt='ls -lth'
+alias la='ls -lah'
+alias lat='ls -lath'
 alias l='ls -CF'
 
 alias open='xdg-open'
