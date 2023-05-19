@@ -111,11 +111,11 @@ alias lt='ls -lth'
 alias la='ls -lah'
 alias lat='ls -lath'
 
-
+alias stopall='scancel -u $USER'
 alias coda='squeue -u $USER'
-alias wcoda='squeue -u $USER'
-alias scrat='cd /scratch/mmencag1/'
-
+alias wcoda='watch -n5 -d squeue -u $USER'
+alias scrat='cd $CINECA_SCRATCH'
+alias work='cd ${WORK}/${USER}'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
