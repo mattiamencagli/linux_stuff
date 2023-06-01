@@ -1,10 +1,15 @@
 #!/bin/bash
 
-if [ -n "$1" ]; then
-    ver=$1
-else
-    ver=11.8
-fi
+case $1 in
+	11.1)
+		ver=11.1;;	
+	11.8)
+		ver=11.8;;
+	12.1)
+		ver=12.1;;
+	*)
+		ver=11.8;;
+esac
 
 dir="/leonardo_scratch/large/userinternal/mmencag1/spack/opt/spack/linux-rhel8-icelake/gcc-8.5.0/nvhpc-23.5-phcjyst3mxjqquncpni2ksmqhhj7j7gu/Linux_x86_64/23.5"
 
