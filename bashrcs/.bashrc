@@ -2,14 +2,19 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+export PATH="$HOME/my_programs:$PATH"
+export PLUTO_DIR=${HOME}/programming/gpluto_cpp                                          
 #export PATH="$HOME/.local/bin:$PATH"
 #export PATH="$HOME/my_programs/clion-2021.1.2/bin:$PATH"
 #export PATH="/usr/local/cuda-11.3/bin:$PATH"
 #export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 #export LD_LIBRARY_PATH="/usr/local/cuda-11.3/lib64:$LD_LIBRARY_PATH"
+#export CUDACXX='nvcc'
+#export CPLUS_INCLUDE_PATH='/usr/local/cuda/include'
 
-export CUDACXX='nvcc'
-export CPLUS_INCLUDE_PATH='/usr/local/cuda/include'
+cat ~/setting_wsl/pass | sudo -S -k cp /etc/resolv.conf ~/setting_wsl/resolv.conf.OLD  
+cat ~/setting_wsl/pass | sudo -S -k cp ~/setting_wsl/resolv.conf /etc/resolv.conf                                                                                              
+eval $(ssh-agent)                                                                      
 
 # If not running interactively, don't do anything
 case $- in
@@ -109,20 +114,23 @@ alias l='ls -CF'
 
 alias open='xdg-open'
 alias gitlogtot='git log --all --oneline --decorate --graph'
+alias jupylab='~/.local/bin/jupyter-lab --no-browser'                                                                                           
+alias step2FA='step ssh login m.mencagli@cineca.it --provisioner cineca-hpc'                                                                    
+alias step2FAcert='step ssh certificate m.mencagli@cineca.it --no-password --insecure --force --provisioner cineca-hpc ${HOME}/.ssh/id_ed25519' 
+alias cdwin='cd /mnt/c/Users/m.mencagli'                                                                                                        
+alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'                                                                        
+alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'                                                                         
+alias pluto_rsync_m100='rsync -azP ~/programming/gpluto_cpp m100:~/'                                                                            
+alias pluto_rsync_all='pluto_rsync_leo && pluto_rsync_m100 && pluto_rsync_karo'                                                                 
 
-alias jupy='jupyter lab 2>/dev/null &'
-alias clion='clion.sh 2>/dev/null &'
-alias webstorm='webstorm.sh 2>/dev/null &'
-alias pycharm='pycharm.sh 2>/dev/null &'
-
-alias restartblue='systemctl restart bluetooth.service'
-
-alias NCU='sudo /usr/local/cuda-11.3/bin/ncu-ui'
-
-alias sshfs_sirio_shared='sshfs mencagli@147.122.43.41:/group_shared/homes/mencagli ~/sirio_nas/shared -p 1022
-'
-alias sshfs_sirio_home='sshfs mencagli@147.122.43.41:/homes/mencagli ~/sirio_nas/home -p 1022
-'
+#alias jupy='jupyter lab 2>/dev/null &'
+#alias clion='clion.sh 2>/dev/null &'
+#alias webstorm='webstorm.sh 2>/dev/null &'
+#alias pycharm='pycharm.sh 2>/dev/null &'
+#alias restartblue='systemctl restart bluetooth.service'
+#alias NCU='sudo /usr/local/cuda-11.3/bin/ncu-ui'
+#alias sshfs_sirio_shared='sshfs mencagli@147.122.43.41:/group_shared/homes/mencagli ~/sirio_nas/shared -p 1022'
+#alias sshfs_sirio_home='sshfs mencagli@147.122.43.41:/homes/mencagli ~/sirio_nas/home -p 1022'
 
 #my commands:
 #yourlogin ALL=(ALL) NOPASSWD: restartblue
