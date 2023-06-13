@@ -1,0 +1,39 @@
+Host g100
+	User mmencag1
+	HostName login.g100.cineca.it
+	HostKeyAlgorithms ecdsa-sha2-nistp256
+
+Host marconi
+	User mmencag1
+	HostName login.marconi.cineca.it
+	HostKeyAlgorithms ecdsa-sha2-nistp256
+
+Host m100
+	User mmencag1
+	HostName login.m100.cineca.it
+	HostKeyAlgorithms ecdsa-sha2-nistp256
+
+Host leonardo
+	User mmencag1
+	HostName 131.175.43.130
+	#HostName login.leonardo.cineca.it
+	HostKeyAlgorithms ecdsa-sha2-nistp256
+
+Host dgx
+	User mmencag1
+	HostName login.dgx.cineca.it
+	HostKeyAlgorithms ecdsa-sha2-nistp256
+
+Host karolina
+	User it4i-mmencagl
+	HostName karolina.it4i.cz
+	Port 22
+
+Host barbora
+    User it4i-mmencagl
+    HostName barbora.it4i.cz
+    Port 22
+
+Host lumi
+	User mencagli
+	HostName lumi.csc.fi
