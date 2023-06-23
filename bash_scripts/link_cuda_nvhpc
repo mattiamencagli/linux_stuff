@@ -1,26 +1,31 @@
 #!/bin/bash
 
-case $1 in
-	11.1)
-		ver=11.1;;	
-	11.8)
-		ver=11.8;;
-	12.1)
-		ver=12.1;;
-	*)
-		ver=11.8;;
-esac
+read -p 'Are you sure to change the CUDA links for nvhpc/23.5-MM? ' check
 
-dir="/leonardo_scratch/large/userinternal/mmencag1/spack/opt/spack/linux-rhel8-icelake/gcc-8.5.0/nvhpc-23.5-phcjyst3mxjqquncpni2ksmqhhj7j7gu/Linux_x86_64/23.5"
+if [ ${check,,} = "y" -o ${check,,} = "yes" ]; then
 
-ln -sfn ${dir}/cuda/${ver}/bin ${dir}/cuda/bin
-ln -sfn ${dir}/cuda/${ver}/include ${dir}/cuda/include
-ln -sfn ${dir}/cuda/${ver}/lib64 ${dir}/cuda/lib64
-ln -sfn ${dir}/cuda/${ver}/nvvm ${dir}/cuda/nvvm
+	case $1 in
+		11.1)
+			ver=11.1;;	
+		11.8)
+			ver=11.8;;
+		12.1)
+			ver=12.1;;
+		*)
+			ver=11.8;;
+	esac
+	
+	dir="/leonardo_scratch/large/userinternal/mmencag1/spack/opt/spack/linux-rhel8-icelake/gcc-8.5.0/nvhpc-23.5-phcjyst3mxjqquncpni2ksmqhhj7j7gu/Linux_x86_64/23.5"
+	
+	ln -sfn ${dir}/cuda/${ver}/bin ${dir}/cuda/bin
+	ln -sfn ${dir}/cuda/${ver}/include ${dir}/cuda/include
+	ln -sfn ${dir}/cuda/${ver}/lib64 ${dir}/cuda/lib64
+	ln -sfn ${dir}/cuda/${ver}/nvvm ${dir}/cuda/nvvm
+	
+	ln -sfn ${dir}/comm_lib/${ver}/nccl ${dir}/comm_lib/nccl
+	ln -sfn ${dir}/comm_lib/${ver}/nvshmem ${dir}/comm_lib/nvshmem
+	
+	ln -sfn ${dir}/math_libs/${ver}/include ${dir}/math_libs/include
+	ln -sfn ${dir}/math_libs/${ver}/lib64 ${dir}/math_libs/lib64
 
-ln -sfn ${dir}/comm_lib/${ver}/nccl ${dir}/comm_lib/nccl
-ln -sfn ${dir}/comm_lib/${ver}/nvshmem ${dir}/comm_lib/nvshmem
-
-ln -sfn ${dir}/math_libs/${ver}/include ${dir}/math_libs/include
-ln -sfn ${dir}/math_libs/${ver}/lib64 ${dir}/math_libs/lib64
-
+fi
