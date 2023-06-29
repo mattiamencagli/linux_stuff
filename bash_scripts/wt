@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n "$2" ]; then
+	nl=$2
+else
+	nl=50
+fi
+
+watch -n 1 tail -n $nl $1
