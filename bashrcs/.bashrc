@@ -124,6 +124,9 @@ alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'
 alias pluto_rsync_m100='rsync -azP ~/programming/gpluto_cpp m100:~/'                                                                            
 alias pluto_rsync_all='pluto_rsync_leo && pluto_rsync_m100 && pluto_rsync_karo'                                                                 
 
+alias qs='export QS=$PWD'            
+alias sq='cd $QS'                    
+
 #alias jupy='jupyter lab 2>/dev/null &'
 #alias clion='clion.sh 2>/dev/null &'
 #alias webstorm='webstorm.sh 2>/dev/null &'
