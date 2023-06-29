@@ -107,15 +107,17 @@ fi
 
 # some more ls aliases
 alias ll='ls -lh'
-alias lt='ls -lth'
+alias lt='ls -lthr'
 alias la='ls -lah'
-alias lat='ls -lath'
+alias lat='ls -lathr'
 
 alias stopall='scancel -u $USER'
 alias coda='squeue -u $USER'
 alias wcoda='watch -n5 -d squeue -u $USER'
 alias scrat='cd $CINECA_SCRATCH'
 alias work='cd ${WORK}/${USER}'
+alias git_reset='git restore `git ls-files -m` && git clean -f'
+alias kill_all='scancel -u $USER'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

@@ -100,14 +100,16 @@ fi
 
 # some more ls aliases
 alias ll='ls -lh'
-alias lt='ls -lth'
+alias lt='ls -lthr'
 alias la='ls -lah'
-alias lat='ls -lath'
+alias lat='ls -lathr'
 
 alias coda='squeue -u mmencagl'
 alias codag1='squeue -p gpu1'
 alias codag2='squeue -p gpu2'
 alias scrat='cd /scratch/mmencagl/'
+alias git_reset='git restore `git ls-files -m` && git clean -f'
+alias kill_all='scancel -u $USER'
 
 alias clion='${HOME}/clion-2022.2.4/bin/clion.sh 2>/dev/null &'
 

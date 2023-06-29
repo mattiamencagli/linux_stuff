@@ -107,15 +107,16 @@ fi
 
 # some more ls aliases
 alias ll='ls -lh'
-alias lt='ls -lth'
+alias lt='ls -lthr'
 alias la='ls -lah'
-alias lat='ls -lath'
+alias lat='ls -lathr'
 alias l='ls -CF'
 
 alias open='xdg-open'
 alias gitlogtot='git log --all --oneline --decorate --graph'
+alias git_reset='git restore `git ls-files -m` && git clean -f'
 alias jupylab='~/.local/bin/jupyter-lab --no-browser'                                                                                           
-alias step2FA='step ssh login m.mencagli@cineca.it --provisioner cineca-hpc'                                                                    
+#alias step2FA='step ssh login m.mencagli@cineca.it --provisioner cineca-hpc'                                                                    
 alias step2FAcert='step ssh certificate m.mencagli@cineca.it --no-password --insecure --force --provisioner cineca-hpc ${HOME}/.ssh/id_ed25519' 
 alias cdwin='cd /mnt/c/Users/m.mencagli'                                                                                                        
 alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'                                                                        
