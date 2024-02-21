@@ -3,18 +3,18 @@
 # for examples
 
 export PATH="$HOME/my_programs:$PATH"
-export PLUTO_DIR=${HOME}/programming/gpluto_cpp                                          
 #export PATH="$HOME/.local/bin:$PATH"
 #export PATH="$HOME/my_programs/clion-2021.1.2/bin:$PATH"
 #export PATH="/usr/local/cuda-11.3/bin:$PATH"
 #export JUPYTERLAB_DIR="$HOME/.local/share/jupyter/lab"
 #export LD_LIBRARY_PATH="/usr/local/cuda-11.3/lib64:$LD_LIBRARY_PATH"
+
 #export CUDACXX='nvcc'
 #export CPLUS_INCLUDE_PATH='/usr/local/cuda/include'
+export PLUTO_DIR=${HOME}/programming/gpluto_cpp
 
-cat ~/setting_wsl/pass | sudo -S -k cp /etc/resolv.conf ~/setting_wsl/resolv.conf.OLD  
-cat ~/setting_wsl/pass | sudo -S -k cp ~/setting_wsl/resolv.conf /etc/resolv.conf                                                                                              
-eval $(ssh-agent)                                                                      
+cat ~/setting_wsl/.pass | sudo -S -k cp /etc/resolv.conf ~/setting_wsl/resolv.conf.OLD &> /dev/null
+cat ~/setting_wsl/.pass | sudo -S -k cp ~/setting_wsl/resolv.conf /etc/resolv.conf &> /dev/null
 
 # If not running interactively, don't do anything
 case $- in
@@ -107,34 +107,26 @@ fi
 
 # some more ls aliases
 alias ll='ls -lh'
-alias lt='ls -lthr'
+alias lt='ls -lth'
 alias la='ls -lah'
-alias lat='ls -lathr'
+alias lat='ls -lath'
 alias l='ls -CF'
 
-alias open='xdg-open'
 alias gitlogtot='git log --all --oneline --decorate --graph'
 alias git_reset='git restore `git ls-files -m` && git clean -f'
-alias jupylab='~/.local/bin/jupyter-lab --no-browser'                                                                                           
-#alias step2FA='step ssh login m.mencagli@cineca.it --provisioner cineca-hpc'                                                                    
-alias step2FAcert='step ssh certificate m.mencagli@cineca.it --no-password --insecure --force --provisioner cineca-hpc ${HOME}/.ssh/id_ed25519' 
-alias cdwin='cd /mnt/c/Users/m.mencagli'                                                                                                        
-alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'                                                                        
-alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'                                                                         
-alias pluto_rsync_m100='rsync -azP ~/programming/gpluto_cpp m100:~/'                                                                            
-alias pluto_rsync_all='pluto_rsync_leo && pluto_rsync_m100 && pluto_rsync_karo'                                                                 
 
-alias qs='export QS=$PWD'            
-alias sq='cd $QS'                    
+alias jupylab='cd ~/my-python-plots && ~/.local/bin/jupyter-lab --no-browser'
 
-#alias jupy='jupyter lab 2>/dev/null &'
-#alias clion='clion.sh 2>/dev/null &'
-#alias webstorm='webstorm.sh 2>/dev/null &'
-#alias pycharm='pycharm.sh 2>/dev/null &'
-#alias restartblue='systemctl restart bluetooth.service'
-#alias NCU='sudo /usr/local/cuda-11.3/bin/ncu-ui'
-#alias sshfs_sirio_shared='sshfs mencagli@147.122.43.41:/group_shared/homes/mencagli ~/sirio_nas/shared -p 1022'
-#alias sshfs_sirio_home='sshfs mencagli@147.122.43.41:/homes/mencagli ~/sirio_nas/home -p 1022'
+#alias step2FA='step ssh login m.mencagli@cineca.it --provisioner cineca-hpc'
+
+alias cdwin='cd /mnt/c/Users/m.mencagli'
+alias cdtest='cd /mnt/c/Users/m.mencagli/OneDrive\ -\ CINECA/Documenti/tests'
+
+alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'
+alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'
+
+alias qs='export QS=$PWD && echo "save $PWD"'
+alias sq='cd $QS'
 
 #my commands:
 #yourlogin ALL=(ALL) NOPASSWD: restartblue
@@ -147,6 +139,22 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+
+alias step2FAcert='step ssh certificate m.mencagli@cineca.it --no-password --insecure --force --provisioner cineca-hpc ${HOME}/.ssh/id_ed25519 && cp -v ${HOME}/.ssh/id_ed25519* /mnt/c/Users/m.mencagli/.ssh/'
+
+date=$(date +"%d%m%Y") 
+last_date=$(cat ~/setting_wsl/last_log)
+
+if [ "$date" = "$last_date" ]; then
+	echo "not first access today"
+else
+	echo "first access today"
+	echo "$date" > ~/setting_wsl/last_log
+	eval $(ssh-agent)
+	step2FAcert	
+fi	
+
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
