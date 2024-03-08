@@ -1,0 +1,19 @@
+#!/bin/bash
+
+module purge
+
+case $1 in
+	ex) 
+		ml OpenMPI/4.1.4-GCC-12.2.0
+		ml use /mnt/proj3/dd-23-44/pop-tools/modules/karolina
+		ml EXTRAE/4.0.4-openmpi-4.1.4-gcc12;;
+	nv)	
+		module load NVHPC/23.5
+		source $HOME/export_nccl.sh;;
+	*)
+		ml OpenMPI/4.1.4-GCC-12.2.0
+esac
+
+module list
+
+

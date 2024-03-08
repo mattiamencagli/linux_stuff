@@ -1,0 +1,34 @@
+#!/bin/bash
+
+module purge
+
+#branch="master"
+branch="coils" 
+#branch="EB"
+
+if [ ${branch} = "master" ]; then
+	echo "nv for nvc++, nothing for standard g++"
+	module load cmake/3.24.3
+	case $1 in
+		nv)
+			module load nvhpc/23.1
+			module load openmpi/4.1.4--nvhpc--23.1-cuda-11.8
+			module load hdf5/1.12.2--openmpi--4.1.4--nvhpc--23.1;;
+		*)
+			module load gcc/11.3.0
+			module load openmpi/4.1.4--gcc--11.3.0-cuda-11.8
+			module load hdf5/1.12.2--openmpi--4.1.4--gcc--11.3.0;;
+	esac
+elif [ ${branch} = "coils" ]; then
+	module load hdf5/1.12.2--openmpi--4.1.4--gcc--11.3.0 
+	module load petsc/3.19.0--openmpi--4.1.4--gcc--11.3.0-cuda-11.8
+	module load cmake/3.24.3
+	module load gcc/11.3.0	
+elif [ ${branch} = "EB" ]; then
+	module load hdf5/1.12.2--openmpi--4.1.4--gcc--11.3.0 
+	module load cmake/3.24.3
+	module load gcc/11.3.0	
+fi
+
+module list
+

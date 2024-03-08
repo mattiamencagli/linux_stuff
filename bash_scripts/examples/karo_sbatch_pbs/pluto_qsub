@@ -1,0 +1,2 @@
+qsub -A DD-23-44 -q qgpu_eurohpc -l select=1:ngpus=8:ncpus=128 -l walltime=02:00:00 -N PLUTO -I
+

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+module purge
+
+# MASTER BRANCH
+# iPic3D funzionante con gcc (GEM esempio standard)
+#module load HDF5/1.10.7-gompi-2020b
+#module load CMake/3.18.4-GCCcore-10.2.0
+# con scorep
+#module load Score-P/7.0-gompic-2020b
+#module load Scalasca/2.6-gompic-2020b
+
+# COILS BRANCH
+# iPic3D 
+module load PETSc/3.17.4-foss-2021a HDF5/1.10.7-gompi-2021a CMake/3.20.1-GCCcore-10.3.0 GCC/11.3.0
+#ml HDF5/1.10.7-gompi-2020b
+#ml CMake/3.20.1-GCCcore-10.3.0
+
+
+
+#module load HDF5/1.12.1-NVHPC-22.2
+
+module list

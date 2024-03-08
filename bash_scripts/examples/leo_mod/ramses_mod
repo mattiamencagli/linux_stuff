@@ -1,0 +1,19 @@
+#!/bin/bash
+
+mp
+
+mod_path="/leonardo/prod/spack/03/install/0.19/linux-rhel8-icelake/gcc-11.3.0/nvhpc-23.11-tgvw3c2exrfgdvn5qdw3rybzd3dbkkim/Linux_x86_64/23.11/"
+module load nvhpc/23.11
+export OMPI_MCA_btl="^uct"
+#export MPICXX="${mod_path}comm_libs/openmpi/openmpi-3.1.5/bin/mpicxx"
+export MPIF90="${mod_path}comm_libs/12.3/openmpi4/openmpi-4.1.5/bin/mpif90"
+export PATH="$PATH:${mod_path}comm_libs/12.3/openmpi4/openmpi-4.1.5/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${mod_path}comm_libs/12.3/openmpi4/openmpi-4.1.5/lib"
+export LIBRARY_PATH="$LIBRARY_PATH:${mod_path}comm_libs/12.3/openmpi4/openmpi-4.1.5/lib"
+export CPATH="$CPATH:${mod_path}comm_libs/12.3/openmpi4/openmpi-4.1.5/include"
+#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${mod_path}comm_libs/nccl/lib"
+#export LIBRARY_PATH="$LIBRARY_PATH:${mod_path}comm_libs/nccl/lib"
+#export CPATH="$CPATH:${mod_path}comm_libs/nccl/include";;
+
+module list
+
