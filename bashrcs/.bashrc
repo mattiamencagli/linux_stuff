@@ -75,7 +75,12 @@ if [ "$color_prompt" = yes ]; then
 	export GIT_PS1_SHOWDIRTYSTATE=1
 	export GIT_PS1_SHOWUNTRACKEDFILES=1
 	export GIT_PS1_SHOWUPSTREAM=1
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;31m\]\u\[\e[01;36m\]\w\[\033[1;93m\]$(__git_ps1 "(%s)")\[\e[1;32m\]\$\[\e[0;37m\] '
+	color_user='\[\e[01;31m\]\u'
+	color_work_dir='\[\e[01;36m\]\w'
+	color_git='\[\033[1;93m\]$(__git_ps1 "(%s)")'
+	color_dollar='\[\e[1;32m\]\$'
+	color_input='\[\e[0;37m\] '
+    PS1='${debian_chroot:+($debian_chroot)}'${color_user}${color_work_dir}${color_git}${color_dollar}${color_input}
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -122,8 +127,8 @@ alias jupylab='cd ~/my-python-plots && ~/.local/bin/jupyter-lab --no-browser'
 alias cdwin='cd /mnt/c/Users/m.mencagli'
 alias cdtest='cd /mnt/c/Users/m.mencagli/OneDrive\ -\ CINECA/Documenti/tests'
 
-alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'
-alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'
+#alias pluto_rsync_karo='rsync -azP ~/programming/gpluto_cpp karolina:~/'
+#alias pluto_rsync_leo='rsync -azP ~/programming/gpluto_cpp leonardo:~/'
 
 alias qs='export QS=$PWD && echo "save $PWD"'
 alias sq='cd $QS'
@@ -145,13 +150,13 @@ alias step2FAcert='step ssh certificate m.mencagli@cineca.it --no-password --ins
 
 date=$(date +"%d%m%Y") 
 last_date=$(cat ~/setting_wsl/last_log)
+eval $(ssh-agent) &> /dev/null
 
 if [ "$date" = "$last_date" ]; then
 	echo "not first access today"
 else
 	echo "first access today"
 	echo "$date" > ~/setting_wsl/last_log
-	eval $(ssh-agent)
 	step2FAcert	
 fi	
 
