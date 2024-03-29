@@ -1,0 +1,11 @@
+#!/bin/bash
+
+module purge
+
+export PATH="$ORIGINALPATH"
+unset OMPI_MCA_btl
+unset MPICXX
+unset LD_LIBRARY_PATH
+unset LIBRARY_PATH
+unset CPATH
+

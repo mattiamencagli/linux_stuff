@@ -1,0 +1,4 @@
+#!/bin/bash
+squeue | grep lrdn | grep boost_usr | awk '{sum+=$7} END {print "boost_usr  :  " sum " nodes used [over 3456(?) nodes]" }'
+squeue | grep lrdn | grep boost_fua | awk '{sum+=$7} END {print "boost_fua  :  " sum " nodes used [over 3456(?) nodes]" }'
+squeue | grep lrdn | grep dcgp | awk '{sum+=$7} END {print "dcgp       :  " sum " nodes used [over 1536(?) nodes]" }'
