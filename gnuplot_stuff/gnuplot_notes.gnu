@@ -11,4 +11,5 @@
 - do the fit of your data: `fit f(x) 'file.dat' u 2:6, via a,b,c`;
 - plot with: `p 'file.dat' u 2:6 w lp, f(x)`.
 
-
+## For loops
+- if you want to plot multiple files (something like `p 'data.*.dat' u 1:2`), you must use a for loop in the following fashion: `p for [i=1000:10000:500] sprintf('data.%d.data', i) using 1:2 w -lp title sprintf('File %d', i)`. The for loop ingrideints are: [start,end,step].
