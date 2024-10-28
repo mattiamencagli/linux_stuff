@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIRECTORY="/scratch-local/mmencagli/"
+
+find "$DIRECTORY" -type f -exec touch {} + -o -type l -exec touch -h {} +
+
+echo "Touched all items in $DIRECTORY."

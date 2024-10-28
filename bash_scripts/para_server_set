@@ -1,0 +1,6 @@
+#!/bin/bash
+
+module load 2023
+module load ParaView-server-osmesa/5.11.2-foss-2023a-mpi
+
+pvserver --server-port=11111 
