@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -L 11111:beo-$1:11111 beo-$1 

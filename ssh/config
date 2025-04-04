@@ -19,4 +19,8 @@ Host grouch
 	User pippo
 	HostName post-1
 	ProxyJump pre-grouch
+Host beo-*
+  User pippo
+  HostName %h
+  ProxyJump grouch
 
