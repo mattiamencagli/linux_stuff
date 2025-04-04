@@ -109,8 +109,16 @@ alias l='ls -CF'
 alias gitlogtot='git log --all --oneline --decorate --graph'
 #alias git_reset='git restore `git ls-files -m` && git clean -fd'
 
-alias qs='export QS=$PWD && echo "save $PWD"'
-alias sq='cd $QS'
+# OLD WAY
+alias qs0='export QS0=$PWD && echo "QS0 save $PWD"'
+alias sq0='cd $QS0'
+alias qs1='export QS1=$PWD && echo "QS1 save $PWD"'
+alias sq1='cd $QS1'
+alias qs2='export QS2=$PWD && echo "QS2 save $PWD"'
+alias sq2='cd $QS2'
+alias qss='echo " QS0 = $QS" && echo " QS1 = $QS1" && echo " QS2 = $QS2"'
+# NEW WAY
+alias sq='source ~/.mybin/qs go'
 
 alias jupy='~/.local/bin/jupyter-lab &>/dev/null &'
 

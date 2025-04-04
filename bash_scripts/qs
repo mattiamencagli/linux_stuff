@@ -1,0 +1,56 @@
+#!/bin/bash
+
+BOOKMARK_FILE="/tmp/.saved_paths"
+
+# Create the file if it doesn't exist
+touch "$BOOKMARK_FILE"
+
+case "$1" in
+  s)
+    # Save the current path
+    grep -Fxq "$PWD" "$BOOKMARK_FILE" || echo "$PWD" >> "$BOOKMARK_FILE"
+    echo "✅ Path saved: $PWD"
+    ;;
+
+  l)
+    echo "📂 Saved Paths:"
+    nl -w2 -s'. ' "$BOOKMARK_FILE"
+    ;;
+
+  reset)
+	echo "🧹 All saved paths have been deleted."
+	rm -vf "$BOOKMARK_FILE"
+	;;
+
+  go)
+    echo "📂 Select a path to go:"
+    nl -w2 -s'. ' "$BOOKMARK_FILE"
+    echo -n "Enter number: "
+    read -r num
+  
+	# Check if the user entered anything
+  	if [ -z "$num" ]; then
+      echo "❌ No selection made. Please enter a valid number."
+      exit 1
+  	fi
+
+    selected=$(sed -n "${num}p" "$BOOKMARK_FILE")
+
+    if [ -n "$selected" ]; then
+      echo "cd \"$selected\""
+      cd "$selected" || echo "❌ Failed to cd into $selected"
+    else
+      echo "❌ Invalid selection"
+    fi
+    ;;
+
+  *)
+    echo -e "Usage: $0 {s|l|go|reset}\n"
+    echo -e "Options:"
+    echo -e "\ts\t\tSave the current path"
+    echo -e "\tl\t\tList all saved paths"
+    echo -e "\tgo\t\tGo to a selected saved path"
+    echo -e "\treset\t\tDelete all saved paths"
+    ;;
+esac
+
